@@ -61,7 +61,21 @@ nhl_teams.each do |team|
                          conference: team['conference']['name'],
                          division: team['division']['name'])
 
+  # Get players
+  nhl_players_url = nhl_team_url + "/#{team['id']}/roster"
+  nhl_players_uri= URI(nhl_players_url)
+  nhl_players_response = Net::HTTP.get(nhl_players_uri)
+  nhl_players_data = JSON.parse(nhl_players_response)
 
+  nhl_players = nhl_players_data['roster']
+
+  nhl_players.each do |player|
+    new_player = Player.create(id: player['person']['id'],
+                               name: player['person']['fullName'],
+                               teamId: team['id'],
+                               jersey_number: player['jerseyNumber'],
+                               position: player['position']['code'])
+  end
 end
 
 
