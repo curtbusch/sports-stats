@@ -23,3 +23,18 @@ nba_teams.each do |team|
   end
 end
 
+# Grab NHL data
+nhl_team_url = 'https://statsapi.web.nhl.com/api/v1/teams'
+nhl_team_uri = URI(nhl_team_url)
+nhl_team_response = Net::HTTP.get(nhl_team_uri)
+nhl_team_data = JSON.parse(nhl_team_response)
+
+nhl_teams = nhl_team_data['teams']
+
+nhl_teams.each do |team|
+  new_team = Team.create(id: team['id'],
+                         team_name: team['name'],
+                         city: team['locationName'],
+                         conference: team['conference']['name'],
+                         division: team['division']['name'])
+end
