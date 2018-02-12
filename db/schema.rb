@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180211222326) do
+ActiveRecord::Schema.define(version: 20180212005458) do
+
+  create_table "coaches", force: :cascade do |t|
+    t.string "name"
+    t.boolean "isHeadCoach"
+    t.integer "teamId"
+    t.string "college"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "players", force: :cascade do |t|
     t.string "name"

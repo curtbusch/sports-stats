@@ -2,6 +2,7 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 require 'net/http'
 require 'json'
+require 'highline/import'
 
 Player.destroy_all
 Team.destroy_all
@@ -44,6 +45,23 @@ nba_players.each do |player|
   end
 end
 
+# Add NBA coaches
+nba_coach_url = NBA_BASE_URL + 'coaches.json'
+nba_coach_uri = URI(nba_coach_url)
+nba_coach_response = Net::HTTPget(nba_coach_uri)
+nba_coach_data = JSON.parse(nba_coach_response)
+
+nba_coaches = nba_coach_data['league']['standard']
+
+nba_coaches.each do |coach|
+  if Team.where(id: coach['teamId'].exists?).exists?
+    new_coach = Coach.create(id: coach['personId'],
+                             name: coach['firstName'] + ' ' + coach['lastName'],
+                             teamId: coach['teamId'],
+                             college: coach['college'])
+  end
+end
+
 # Grab NHL data
 nhl_base_url = 'https://statsapi.web.nhl.com/api/v1/'
 
@@ -77,5 +95,4 @@ nhl_teams.each do |team|
                                position: player['position']['code'])
   end
 end
-
 
