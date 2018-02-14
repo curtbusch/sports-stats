@@ -6,9 +6,6 @@ require 'openssl'
 require 'json'
 require 'faker'
 
-puts Team.inspect
-puts Player.inspect
-puts Coach.inspect
 Coach.destroy_all
 Player.destroy_all
 Team.destroy_all
@@ -38,7 +35,7 @@ nba_teams.each do |team|
                            league_id: nba_league.id)
   end
 end
-puts "Team Count: #{Team.count}"
+
 # Add NBA players
 nba_player_url = NBA_BASE_URL + 'players.json'
 nba_player_uri = URI(nba_player_url)
@@ -57,8 +54,6 @@ nba_players.each do |player|
   end
 end
 
-puts "Player Count: #{Player.count}"
-
 # Add NBA coaches
 nba_coach_url = NBA_BASE_URL + 'coaches.json'
 nba_coach_uri = URI(nba_coach_url)
@@ -76,7 +71,7 @@ nba_coaches.each do |coach|
                              college: coach['college'])
   end
 end
-puts "Coach count #{Coach.count}"
+
 puts 'Done NBA'
 
 # Grab NHL data
@@ -127,17 +122,18 @@ nhl_teams.each do |team|
     head_coach = false;
   end
 end
-puts "Coach count after nhl #{Coach.count}"
+puts 'Done NHL'
 
 # Grab NFL data
-nfl_league = League.create(name: 'NFL',
+nfl_league = League.create(id: 3,
+                           name: 'NFL',
                            fullname: 'National Football League')
 
 nfl_team_player_url = 'https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-regular/roster_players.json?fordate=20171112'
 
 # Get username and password for api
-username = ''
-password = ''
+username = 'username'
+password = 'password'
 
 nfl_team_player_uri= URI(nfl_team_player_url)
 
@@ -161,6 +157,15 @@ Net::HTTP.start(nfl_team_player_uri.host, nfl_team_player_uri.port,
                              city: team['City'],
                              league_id: nfl_league.id)
 
+      # Add nfl coaches (No coaches in api so using faker names)
+      head_coach = true
+      5.times do
+        new_coach = Coach.create(name: Faker::Name.name,
+                                 isHeadCoach: head_coach,
+                                 teamId: new_team.id,
+                                 college: Faker::University.name)
+        head_coach = false
+      end
     end
 
     player = player_team['player']
@@ -170,9 +175,9 @@ Net::HTTP.start(nfl_team_player_uri.host, nfl_team_player_uri.port,
                                position: player['Position'])
   end
 end
+puts 'Done NFL'
 
-# puts League.inspect
-# puts Team.inspect
-# puts Player.inspect
-# puts Coach.inspect
+puts League.count
+puts Team.count
+puts Player.count
 puts Coach.count
