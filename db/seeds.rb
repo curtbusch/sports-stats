@@ -119,7 +119,7 @@ nhl_teams.each do |team|
 
   # Get coaches (no coaches in nhl api so using faker names)
   head_coach = true
-  5.each do |c|
+  5.times do
     Coach.create(name: Faker::Name.name,
                  isHeadCoach: head_coach,
                  teamId: new_team.id,
