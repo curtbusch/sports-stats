@@ -1,5 +1,5 @@
 class Player < ApplicationRecord
-  belongs_to :team
+  belongs_to :team, optional: true
 
   validates :name, :teamId, presence: true
   validates :jersey_number, numericality: { less_than_or_equal_to: 99 }

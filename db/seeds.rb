@@ -4,14 +4,19 @@ require 'net/http'
 require 'net/https'
 require 'openssl'
 require 'json'
+require 'faker'
 
+puts Team.inspect
+puts Player.inspect
+puts Coach.inspect
 Coach.destroy_all
 Player.destroy_all
 Team.destroy_all
 League.destroy_all
 
 # Grab NBA data
-nba_league = League.create(name: 'NBA',
+nba_league = League.create(id: 1,
+                           name: 'NBA',
                            fullname: 'National Basketball Association')
 
 NBA_BASE_URL = 'http://data.nba.net/prod/v1/2017/'
@@ -25,7 +30,7 @@ nba_teams = nba_team_data['league']['standard']
 
 nba_teams.each do |team|
   if team['isNBAFranchise']
-    new_team = Team.create(id: team['teamId'],
+    new_team = Team.create(id: team['teamId'].to_i,
                            team_name: team['fullName'],
                            city: team['city'],
                            conference: team['confName'],
@@ -33,7 +38,7 @@ nba_teams.each do |team|
                            league_id: nba_league.id)
   end
 end
-
+puts "Team Count: #{Team.count}"
 # Add NBA players
 nba_player_url = NBA_BASE_URL + 'players.json'
 nba_player_uri = URI(nba_player_url)
@@ -52,6 +57,8 @@ nba_players.each do |player|
   end
 end
 
+puts "Player Count: #{Player.count}"
+
 # Add NBA coaches
 nba_coach_url = NBA_BASE_URL + 'coaches.json'
 nba_coach_uri = URI(nba_coach_url)
@@ -62,15 +69,19 @@ nba_coaches = nba_coach_data['league']['standard']
 
 nba_coaches.each do |coach|
   if Team.where(id: coach['teamId']).exists?
-    new_coach = Coach.create(id: coach['personId'],
+    new_coach = Coach.create(id: coach['personId'].to_i,
                              name: coach['firstName'] + ' ' + coach['lastName'],
-                             teamId: coach['teamId'],
+                             isHeadCoach: coach['isAssistant'],
+                             teamId: coach['teamId'].to_i,
                              college: coach['college'])
   end
 end
+puts "Coach count #{Coach.count}"
+puts 'Done NBA'
 
 # Grab NHL data
-nhl_league = League.create(name: 'NHL',
+nhl_league = League.create(id: 2,
+                           name: 'NHL',
                            fullname: 'National Hockey League')
 
 nhl_base_url = 'https://statsapi.web.nhl.com/api/v1/'
@@ -105,7 +116,18 @@ nhl_teams.each do |team|
                                jersey_number: player['jerseyNumber'],
                                position: player['position']['code'])
   end
+
+  # Get coaches (no coaches in nhl api so using faker names)
+  head_coach = true
+  5.each do |c|
+    Coach.create(name: Faker::Name.name,
+                 isHeadCoach: head_coach,
+                 teamId: new_team.id,
+                 college: Faker::University.name)
+    head_coach = false;
+  end
 end
+puts "Coach count after nhl #{Coach.count}"
 
 # Grab NFL data
 nfl_league = League.create(name: 'NFL',
@@ -114,8 +136,8 @@ nfl_league = League.create(name: 'NFL',
 nfl_team_player_url = 'https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-regular/roster_players.json?fordate=20171112'
 
 # Get username and password for api
-username = 'username'
-password = 'password'
+username = ''
+password = ''
 
 nfl_team_player_uri= URI(nfl_team_player_url)
 
@@ -149,7 +171,8 @@ Net::HTTP.start(nfl_team_player_uri.host, nfl_team_player_uri.port,
   end
 end
 
-puts League.inspect
-puts Team.inspect
-puts Player.inspect
-puts Coach.inspect
+# puts League.inspect
+# puts Team.inspect
+# puts Player.inspect
+# puts Coach.inspect
+puts Coach.count
