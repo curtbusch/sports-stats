@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="86d4aac5-1ff3-4ab7-8b8d-9788b0e0f344" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/app/models/league.rb" afterPath="$PROJECT_DIR$/app/models/league.rb" />
       <change beforePath="$PROJECT_DIR$/db/seeds.rb" afterPath="$PROJECT_DIR$/db/seeds.rb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
@@ -23,7 +24,7 @@
       <file leaf-file-name="seeds.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/seeds.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
+            <state relative-caret-position="223">
               <caret line="135" column="20" lean-forward="false" selection-start-line="135" selection-start-column="20" selection-end-line="135" selection-end-column="20" />
               <folding />
             </state>
@@ -43,8 +44,8 @@
       <file leaf-file-name="league.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/league.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="10" lean-forward="false" selection-start-line="0" selection-start-column="10" selection-end-line="0" selection-end-column="10" />
+            <state relative-caret-position="68">
+              <caret line="4" column="41" lean-forward="false" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -98,10 +99,10 @@
       <list>
         <option value="$PROJECT_DIR$/db/migrate/20180211211228_create_players.rb" />
         <option value="$PROJECT_DIR$/Gemfile" />
-        <option value="$PROJECT_DIR$/app/models/league.rb" />
         <option value="$PROJECT_DIR$/app/models/coach.rb" />
         <option value="$PROJECT_DIR$/app/models/team.rb" />
         <option value="$PROJECT_DIR$/app/models/player.rb" />
+        <option value="$PROJECT_DIR$/app/models/league.rb" />
         <option value="$PROJECT_DIR$/db/seeds.rb" />
       </list>
     </option>
@@ -308,12 +309,12 @@
       <workItem from="1518493334339" duration="5000" />
       <workItem from="1518537387593" duration="104000" />
       <workItem from="1518625883537" duration="4917000" />
-      <workItem from="1518630859832" duration="3741000" />
+      <workItem from="1518630859832" duration="5163000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51675000" />
+    <option name="totallyTimeSpent" value="53097000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="696" extended-state="6" />
@@ -614,10 +615,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/team.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="2" lean-forward="false" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/coach.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="34" lean-forward="false" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/league.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="41" lean-forward="false" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
           <folding />
         </state>
       </provider>
@@ -630,25 +647,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/league.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="10" lean-forward="false" selection-start-line="0" selection-start-column="10" selection-end-line="0" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/team.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="2" lean-forward="false" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/seeds.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
+        <state relative-caret-position="223">
           <caret line="135" column="20" lean-forward="false" selection-start-line="135" selection-start-column="20" selection-end-line="135" selection-end-column="20" />
           <folding />
         </state>
