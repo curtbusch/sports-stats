@@ -1,6 +1,10 @@
-<h2><%= "The #{@team.team_name} roster" %></h2>
+<h2><%= "City: #{@team.city}" %></h2>
+<% if !@team.conference.nil? %>
+  <h2><%= "Conference: #{@team.conference}" %></h2>
+  <h2><%= "Division: #{@team.division}" %></h2>
+<% end %>
 
-<h3>Players</h3>
+<h3>Roster</h3>
 <table>
   <tr>
     <th>Player Name</th>

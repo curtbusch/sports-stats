@@ -132,8 +132,8 @@ nfl_league = League.create(id: 3,
 nfl_team_player_url = 'https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-regular/roster_players.json?fordate=20171112'
 
 # Get username and password for api
-username = 'username'
-password = 'password'
+username = 'ipalleck'
+password = '$tpauls318'
 
 nfl_team_player_uri= URI(nfl_team_player_url)
 
