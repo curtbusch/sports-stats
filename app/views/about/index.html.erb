@@ -1,0 +1,129 @@
+<h2>About</h2>
+
+<h3>Data Sources</h3>
+<p><b><a href="http://data.nba.net/prod/v1/2017/">NBA API-</a></b>  Getting teams, players and coaches from the 2017/2018 season of the NBA</p>
+<p><b><a href="https://statsapi.web.nhl.com/api/v1/">NHL API-</a></b> Getting teams and players from the 2017/2018 season of the NHL</p>
+<p><b><a href="https://api.mysportsfeeds.com/v1.2/pull/nfl/2017-regular/roster_players.json?fordate=20171022">NFL API-</a></b> Getting teams and players from the 2017/2018 season of the NFL (requires account)</p>
+
+<p><b>How data is related-</b> oaches and teams are going to be child tables to the team table and the team table is a child to the league table.  There is a league for the NBA, NHL and NFL which will be populated with all of their teams, players and coaches.</p>
+
+<h2>Data Tables</h2>
+
+<table>
+  <tr>
+    <th>League</th>
+  </tr>
+  <tr>
+    <th>Column Name</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>name</td>
+    <td>string</td>
+    <td>The abbreviated name of the league (eg. NHL)</td>
+  </tr>
+  <tr>
+    <td>fullname</td>
+    <td>string</td>
+    <td>The full name of the league (eg. National Hockey League)</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>Teams</th>
+  </tr>
+  <tr>
+    <th>Column Name</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>team_name</td>
+    <td>string</td>
+    <td>The name of the team (eg. Raptors)</td>
+  </tr>
+  <tr>
+    <td>city</td>
+    <td>string</td>
+    <td>The city the team is from</td>
+  </tr>
+  <tr>
+    <td>conference</td>
+    <td>string</td>
+    <td>The conference the team is a part of</td>
+  </tr>
+  <tr>
+    <td>division</td>
+    <td>string</td>
+    <td>The division the team is a part of</td>
+  </tr>
+  <tr>
+    <td>league_id (fk)</td>
+    <td>int</td>
+    <td>The id of the league the team is a part of</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>player</th>
+  </tr>
+  <tr>
+    <th>Column Name</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>name</td>
+    <td>string</td>
+    <td>The full name of the player</td>
+  </tr>
+  <tr>
+    <td>teamId (fk)</td>
+    <td>int</td>
+    <td>The id of the team that the player is a part of</td>
+  </tr>
+  <tr>
+    <td>jersey_number</td>
+    <td>int</td>
+    <td>The jersey number for the player</td>
+  </tr>
+  <tr>
+    <td>position</td>
+    <td>string</td>
+    <td>The position that the player plays</td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>Coaches</th>
+  </tr>
+  <tr>
+    <td>Column Name</td>
+    <td>Type</td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td>name</td>
+    <td>string</td>
+    <td>The full name of the coach</td>
+  </tr>
+  <tr>
+    <td>isHeadCoach</td>
+    <td>boolean</td>
+    <td>True or False for whether or not the coach is a head coach or assistant coach</td>
+  </tr>
+  <tr>
+    <td>college</td>
+    <td>string</td>
+    <td>The college that the coach coached at</td>
+  </tr>
+  <tr>
+    <td>teamId (fk)</td>
+    <td>int</td>
+    <td>The id for the team that the coach is a part of</td>
+  </tr>
+</table>
