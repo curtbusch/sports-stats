@@ -1,1 +1,17 @@
 <h2><%= "The #{@team.team_name} roster" %></h2>
+
+<table>
+  <tr>
+    <th>Player Name</th>
+    <th>Jersey Number</th>
+    <th>Position</th>
+  </tr>
+
+  <% Player.where(teamId: @team.id).each do |player| %>
+    <tr>
+      <td><%= link_to player.name, player_path %></td>
+      <td><%= player.jersey_number %></td>
+      <td><%= player.position %></td>
+    </tr>
+<% end %>
+</table>

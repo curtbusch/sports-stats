@@ -1,2 +1,5 @@
-<h1>Player#show</h1>
-<p>Find me in app/views/player/show.html.erb</p>
+<h2> <%= @player.name %> </h2>
+
+<h3> <%= "Team: #{Team.where(id: @player.teamId).first.team_name}" %> </h3>
+<h3> <%= "Jersey: #{@player.jersey_number}" %> </h3>
+<h3> <%= "Position: #{@player.position}" %> </h3>

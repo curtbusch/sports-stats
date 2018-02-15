@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   get 'leagues/:id', to: 'leagues#show', as: 'league', id: /\d+/
 
   get 'teams/:id', to: 'teams#show', as: 'team', id: /\d+/
+
+  get 'players/', to: 'players#show', as: 'player', id: /\d+/
 end
