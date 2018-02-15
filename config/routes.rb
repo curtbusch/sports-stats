@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'coaches/index'
+
+  get 'coaches/show'
+
   get 'player/index'
 
   get 'player/show'
@@ -12,5 +16,7 @@ Rails.application.routes.draw do
 
   get 'teams/:id', to: 'teams#show', as: 'team', id: /\d+/
 
-  get 'players/', to: 'players#show', as: 'player', id: /\d+/
+  get 'players/:id', to: 'player#show', as: 'player', id: /\d+/
+
+  get 'coaches/:id', to: 'coaches#show', as: 'coach', id: /\d+/
 end
