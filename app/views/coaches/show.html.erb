@@ -1,2 +1,9 @@
-<h1>Coaches#show</h1>
-<p>Find me in app/views/coaches/show.html.erb</p>
+<h2><%= @coach.name %></h2>
+
+<h3><%= "Team: #{Team.where(id: @coach.teamId).first.team_name}" %></h3>
+<% if @coach.isHeadCoach %>
+  <h3>Coaching Position: Head</h3>
+<% else %>
+  <h3>Coaching Position: Assistant</h3>
+<% end %>
+<h3><%= "College Coached At: #{@coach.college}" %></h3>

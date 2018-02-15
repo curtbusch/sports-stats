@@ -1,5 +1,6 @@
 <h2><%= "The #{@team.team_name} roster" %></h2>
 
+<h3>Players</h3>
 <table>
   <tr>
     <th>Player Name</th>
@@ -13,5 +14,25 @@
       <td><%= player.jersey_number %></td>
       <td><%= player.position %></td>
     </tr>
+  <% end %>
+</table>
+
+<h3>Coaches</h3>
+<table>
+  <tr>
+    <th>Coaches Name</th>
+    <th>Coaching Position</th>
+    <th>College Coached At</th>
+  </tr>
+<% Coach.where(teamId: @team.id).each do |coach| %>
+  <tr>
+    <td><%= link_to coach.name, coach_path(coach) %></td>
+    <% if coach.isHeadCoach %>
+      <td>Head</td>
+    <% else %>
+      <td>Assistant</td>
+    <% end %>
+    <td><%= coach.college %></td>
+  </tr>
 <% end %>
 </table>
