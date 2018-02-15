@@ -153,7 +153,7 @@ Net::HTTP.start(nfl_team_player_uri.host, nfl_team_player_uri.port,
     team = player_team['team']
     if !Team.where(id: team['ID'].to_i).exists?
       new_team = Team.create(id: team['ID'].to_i,
-                             team_name: team['Name'],
+                             team_name: team['City'] + ' ' + team['Name'],
                              city: team['City'],
                              league_id: nfl_league.id)
 

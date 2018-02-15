@@ -1,4 +1,8 @@
-<h1><%= link_to "Sports Data", leagues_path %></h1>
-
 <h2><%= @league.name %></h2>
 <p><%= @league.fullname %></p>
+
+<ul>
+  <% @teams.each do |team| %>
+    <li><%= team.team_name %></li>
+  <% end %>
+</ul>
