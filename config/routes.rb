@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'player/index'
+
+  get 'player/show'
+
   get 'teams/index'
 
   get 'teams/show'
